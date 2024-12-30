@@ -1,14 +1,14 @@
 AirportBrcmFixup
 ==================
 
-[![Build Status](https://github.com/acidanthera/AirportBrcmFixup/workflows/CI/badge.svg?branch=master)](https://github.com/acidanthera/AirportBrcmFixup/actions) [![Scan Status](https://scan.coverity.com/projects/16401/badge.svg?flat=1)](https://scan.coverity.com/projects/16401)
+[![Build Status](https://github.com/acidanthera/AirportBrcmFixup/actions/workflows/main.yml/badge.svg?branch=master)](https://github.com/acidanthera/AirportBrcmFixup/actions) [![Scan Status](https://scan.coverity.com/projects/16401/badge.svg?flat=1)](https://scan.coverity.com/projects/16401)
 
 An open source kernel extension providing a set of patches required for non-native Airport Broadcom Wi-Fi cards.
 
 #### Notes
-This repository should be compiled with [Lilu](https://github.com/vit9696/Lilu) ***v1.2.4*** or greater, otherwise the compilation will fail! Currently requires macOS 10.10 or newer.
+Currently this kext requires macOS 10.10 or newer.
 
-Note: ***Debug version of Lilu.kext should be put in the same folder as BrcmWLFixup! And they should be also used together!***
+Note: ***Debug version of Lilu.kext should be put in the same folder as AirportBrcmFixup! And they should be also used together!***
 
 #### Features
 - Supports AirPort_Brcm4360, AirPort_BrcmNIC and AirPort_BrcmNIC_MFG
@@ -107,7 +107,19 @@ Possible values for brcmfx-aspm (and pci-aspm-default):
 [12]
 - AirPortBrcm4360: removed
 - AirPortBrcm4331: removed
-- AirPortBrcmNIC: 43ba, 43a3, 43a0, IOProbeScore = 1400
+- AirPortBrcmNIC: 43ba, 43a3, 43a0, IOProbeScore = 1400, kext is moved to the new location - IO80211FamilyLegacy.kext/Contents/PlugIns
+- AirPortBrcmNIC-MFG: removed
+
+[13]
+- AirPortBrcm4360: removed
+- AirPortBrcm4331: removed
+- AirPortBrcmNIC: 43ba, 43a3, 43a0, IOProbeScore = 1400, kext is moved to the new location - IO80211FamilyLegacy.kext/Contents/PlugIns
+- AirPortBrcmNIC-MFG: removed
+
+[14+] Use with OCLP
+- AirPortBrcm4360: removed
+- AirPortBrcm4331: removed
+- AirPortBrcmNIC: removed
 - AirPortBrcmNIC-MFG: removed
 
 Explanation in russian language: (https://applelife.ru/threads/airportbrcmfixup-lilu-plagin-s-naborom-patchej-dlja-wi-fi-kart-broadcom.2355103/page-16#post-751173)
@@ -121,5 +133,5 @@ In 11+ class AirPortBrcm4360 has been completely removed. Using of injector kext
 loading of original airport kext. To address this issue and keep compatibility with older systems injectors for AirPortBrcm4360 and AirPortBrcmNIC were removed
 from main Info.plist file. Instead, the two new kext injectors are deployed in PlugIns folder: AirPortBrcm4360_Injector.kext and AirPortBrcmNIC_Injector.kext.
 ***You have to block (or remove) AirPortBrcm4360_Injector.kext in 11+.*** In OpenCore you can specify MaxKernel 19.9.9 for AirPortBrcm4360_Injector.kext.
-In Clover you can have two different AirportBrcmFixup.kext, but in kext folder with version name 11 and 12 AirportBrcmFixup.kext must not contain AirPortBrcm4360_Injector.kext. You don't need these injectors at all if your ```vendor-id:device-id``` is natively supported by AirPortBrcmNIC or AirPortBrcm4360 (your device-id is included into Info.plist in these kexts).
+In Clover you can have two different AirportBrcmFixup.kext, but in kext folder with version name 11 and 12 and 13 AirportBrcmFixup.kext must not contain AirPortBrcm4360_Injector.kext. You don't need these injectors at all if your ```vendor-id:device-id``` is natively supported by AirPortBrcmNIC or AirPortBrcm4360 (your device-id is included into Info.plist in these kexts).
 

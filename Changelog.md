@@ -1,5 +1,22 @@
 AirportBrcmFixup Changelog
 ============================
+#### v2.1.9
+- Added constants for macOS 15 support
+
+#### v2.1.8
+- Added constants for macOS 14 support for use with OCLP
+
+#### v2.1.7
+- Override methods AirPort_BrcmNIC::setTX_NSS, AirPort_BrcmNIC::getTX_NSS and AirPort_BrcmNIC::getNSS to investigate NSS issues. 
+  Original method is called, and debug version of kext (with boot-arg -brcmfxdbg) prints info into log
+
+#### v2.1.6
+- Added constants for macOS 13 support
+
+#### v2.1.5
+- Fix compilation issues in Xcode 13.3.1
+- Fix patching of AirPortBrcmNIC for Monterey (kext located in IO80211FamilyLegacy.kext/PlugIns)
+
 #### v2.1.4
 - boot-arg and property `brcmfx-delay` (Number) delays start of native broadcom driver for specified amount of milliseconds. Can be required for successful start in macOS Monterey 12.1 and newer versions. 
 
